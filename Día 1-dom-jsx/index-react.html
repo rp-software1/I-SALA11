@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Restaurante — React CDN</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .carta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .plato {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 12px;
+            width: 180px;
+        }
+
+        .agotado {
+            opacity: 0.5;
+            border-color: red;
+        }
+
+        .estado {
+            font-size: 12px;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const platos = [
+            { id: 1, nombre: "Lomo saltado", categoria: "segundos", precio: 18, stock: 3, disponible: true },
+            { id: 2, nombre: "Arroz con pollo", categoria: "segundos", precio: 12, stock: 5, disponible: true },
+            { id: 3, nombre: "Sopa de verduras", categoria: "entradas", precio: 8, stock: 0, disponible: false },
+        ];
+
+        function PlatoCard({ nombre, categoria, precio, stock, disponible }) {
+            return (
+                <div className={"plato" + (disponible ? "" : " agotado")}>
+                    <h3>{nombre}</h3>
+                    <p>{categoria}</p>
+                    <p>S/ {precio}</p>
+                    <p>Stock: {stock}</p>
+                    <p className="estado">{disponible ? "Disponible" : "Agotado"}</p>
+                </div>
+            );
+        }
+
+        function Carta({ platos }) {
+            return (
+                <div>
+                    <h1>Carta del Restaurante</h1>
+                    <div className="carta">
+                        {platos.map(plato => (
+                            <PlatoCard
+                                key={plato.id}
+                                nombre={plato.nombre}
+                                categoria={plato.categoria}
+                                precio={plato.precio}
+                                stock={plato.stock}
+                                disponible={plato.disponible}
+                            />
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<Carta platos={platos} />);
+    </script>
+</body>
+
+</html>
