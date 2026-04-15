@@ -1,5 +1,5 @@
 // Dia 8 - Estado Global con Context API
-import { usePedido } from '../context/PedidoContext';
+/*import { usePedido } from '../context/PedidoContext';
 
 export default function CarritoPage() {
     const { pedido, quitarPlato, limpiarPedido } = usePedido();
@@ -32,6 +32,74 @@ export default function CarritoPage() {
         </div>
     );
 }
+
+*/
+
+import { useState } from "react";
+import { usePedido } from "../context/PedidoContext";
+import { crearPedido } from "../services/api";
+
+export default function CarritoPage() {
+    const { pedido, limpiarPedido } = usePedido();
+
+    const [enviando, setEnviando] = useState(false);
+    const [error, setError] = useState(null);
+    const [pedidoCreado, setPedidoCreado] = useState(null);
+
+    async function enviarComanda() {
+        if (pedido.items.length === 0) return;
+
+        setEnviando(true);
+        setError(null);
+
+        try {
+            const res = await crearPedido({
+                mesaId: pedido.mesaId,
+                tipo: pedido.tipo,
+                items: pedido.items
+            });
+
+            setPedidoCreado(res);
+            limpiarPedido();
+
+        } catch {
+            setError("Error al enviar pedido");
+        } finally {
+            setEnviando(false);
+        }
+    }
+
+    if (pedidoCreado) {
+        return (
+            <div>
+                <h2>✅ Pedido creado</h2>
+                <p>ID: {pedidoCreado._id}</p>
+                <p>Estado: {pedidoCreado.estado}</p>
+            </div>
+        );
+    }
+
+    return (
+        <div>
+            <h1>Carrito</h1>
+
+            {pedido.items.map((item, i) => (
+                <div key={i}>
+                    <p>{item.nombre} x{item.cantidad}</p>
+                </div>
+            ))}
+
+            <button onClick={enviarComanda} disabled={enviando}>
+                {enviando ? "Enviando..." : "Enviar comanda"}
+            </button>
+
+            {error && <p>{error}</p>}
+        </div>
+    );
+}
+
+
+
 // DIA 6 AXIOS
 /*
 import { useEffect, useState } from "react";
