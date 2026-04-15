@@ -23,3 +23,30 @@ export async function getPlatos() {
         return platosMock;
     }*/
 }
+
+// ── Mesas ─────────────────────────────
+export async function getMesas() {
+    const response = await api.get('/api/mesas');
+    return response.data;
+}
+
+export async function getMesasDisponibles() {
+    const response = await api.get('/api/mesas?estado=disponible');
+    return response.data;
+}
+
+// ── Pedidos ───────────────────────────
+export async function crearPedido(pedidoData) {
+    const response = await api.post('/api/pedidos', pedidoData);
+    return response.data;
+}
+
+export async function getPedido(id) {
+    const response = await api.get(`/api/pedidos/${id}`);
+    return response.data;
+}
+
+export async function cambiarEstadoPedido(id, estado) {
+    const response = await api.patch(`/api/pedidos/${id}/estado`, { estado });
+    return response.data;
+}
