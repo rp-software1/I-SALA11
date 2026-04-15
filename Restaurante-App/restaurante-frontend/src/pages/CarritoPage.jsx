@@ -1,6 +1,39 @@
+// Dia 8 - Estado Global con Context API
+import { usePedido } from '../context/PedidoContext';
 
+export default function CarritoPage() {
+    const { pedido, quitarPlato, limpiarPedido } = usePedido();
+
+    return (
+        <div style={{ padding: "20px" }}>
+            <h1>Comanda activa</h1>
+
+            {pedido.items.length === 0 ? (
+                <p>No hay platos en la comanda.</p>
+            ) : (
+                pedido.items.map((item) => (
+                    <div key={item.platoId}>
+                        <p><strong>{item.nombre}</strong></p>
+                        <p>Cantidad: {item.cantidad}</p>
+                        <p>Subtotal: S/ {item.precioUnitario * item.cantidad}</p>
+
+                        <button onClick={() => quitarPlato(item.platoId)}>
+                            Quitar
+                        </button>
+                    </div>
+                ))
+            )}
+
+            <h3>Total: S/ {pedido.total}</h3>
+
+            <button onClick={limpiarPedido}>
+                Limpiar comanda
+            </button>
+        </div>
+    );
+}
 // DIA 6 AXIOS
-
+/*
 import { useEffect, useState } from "react";
 import { getPlatos } from "../services/api";
 //import PlatoCard from "../components/PlatoCard";
@@ -109,6 +142,7 @@ export default function CarritoPage() {
         </div>
     );
 }
+*/
 
 /*
 // src/pages/CarritoPage.jsx
