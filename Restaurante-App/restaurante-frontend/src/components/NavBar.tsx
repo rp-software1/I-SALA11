@@ -1,3 +1,36 @@
+// TYPESCRIPT
+/*function NavBar() {
+    return (
+        <nav>
+            <h2>Restaurante</h2>
+        </nav>
+    );
+}
+
+export default NavBar;*/
+
+import { Link } from "react-router-dom";
+
+function NavBar() {
+    return (
+        <nav style={{
+            display: "flex",
+            gap: "20px",
+            padding: "15px",
+            background: "#222",
+            color: "white"
+        }}>
+            <Link to="/" style={{ color: "white" }}>Mesas</Link>
+            <Link to="/menu" style={{ color: "white" }}>Menú</Link>
+            <Link to="/carrito" style={{ color: "white" }}>Carrito</Link>
+        </nav>
+    );
+}
+
+export default NavBar;
+
+
+// REACT DIA8
 /*import PropTypes from "prop-types";
 
 const NavBar = ({ nombreRestaurante = "Restaurante" }) => {
@@ -15,7 +48,9 @@ NavBar.propTypes = {
 
 export default NavBar;*/
 
-import { NavLink } from "react-router-dom";
+// REACT DIA9
+
+/*import { NavLink } from "react-router-dom";
 
 export default function NavBar({ nombreRestaurante }) {
     const estiloLink = ({ isActive }) => ({
@@ -43,3 +78,4 @@ export default function NavBar({ nombreRestaurante }) {
         </nav>
     );
 }
+*/

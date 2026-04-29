@@ -29,7 +29,7 @@ export default App;
 */
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
+//import NavBar from "./components/NavBar";
 
 import MenuPage from "./pages/MenuPage";
 import MesasPage from "./pages/MesasPage";
@@ -40,8 +40,6 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <NavBar nombreRestaurante="Buen Sabor" />
-
       <Routes>
         <Route path="/" element={<MenuPage />} />
         <Route path="/mesas" element={<MesasPage />} />

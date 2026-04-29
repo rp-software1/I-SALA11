@@ -1,3 +1,64 @@
+// TYPESCRIPT DIA 3
+import { useState } from 'react';
+import type { Pedido } from '../types';
+import { crearPedido } from '../services/api';
+import { usePedido } from '../context/PedidoContext';
+
+function CarritoPage() {
+    const { pedido, limpiarPedido } = usePedido();
+
+    const [enviando, setEnviando] = useState<boolean>(false);
+    const [confirmacion, setConfirmacion] = useState<string | null>(null);
+    const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
+
+    const handleEnviarComanda = async (): Promise<void> => {
+        if (pedido.tipo === 'mesa' && !pedido.mesaId) {
+            setErrorEnvio("Selecciona una mesa antes de enviar");
+            return;
+        }
+
+        setEnviando(true);
+        setErrorEnvio(null);
+
+        try {
+            const body: Omit<Pedido, '_id' | 'creadoEn' | 'actualizadoEn'> = {
+                mesaId: pedido.mesaId,
+                tipo: pedido.tipo,
+                estado: 'pendiente',
+                items: pedido.items,
+                total: pedido.total,
+            };
+
+            const nuevoPedido: Pedido = await crearPedido(body);
+            setConfirmacion(nuevoPedido._id);
+            limpiarPedido();
+        } catch (err: unknown) {
+            const mensaje =
+                err instanceof Error ? err.message : "Error al enviar la comanda";
+            setErrorEnvio(mensaje);
+        } finally {
+            setEnviando(false);
+        }
+    };
+
+    if (confirmacion) {
+        return <p>✅ Comanda enviada — ID: {confirmacion}</p>;
+    }
+
+    return (
+        <div>
+            {errorEnvio && <p style={{ color: 'red' }}>{errorEnvio}</p>}
+
+            <button onClick={handleEnviarComanda} disabled={enviando}>
+                {enviando ? "Enviando..." : "Enviar comanda"}
+            </button>
+        </div>
+    );
+}
+
+export default CarritoPage;
+
+
 // Dia 8 - Estado Global con Context API
 /*import { usePedido } from '../context/PedidoContext';
 
@@ -35,7 +96,8 @@ export default function CarritoPage() {
 
 */
 
-import { useState } from "react";
+// Dia 9
+/*import { useState } from "react";
 import { usePedido } from "../context/PedidoContext";
 import { crearPedido } from "../services/api";
 
@@ -96,7 +158,7 @@ export default function CarritoPage() {
             {error && <p>{error}</p>}
         </div>
     );
-}
+}*/
 
 
 
