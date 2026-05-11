@@ -1,9 +1,13 @@
+// Server Component — SIN "use client"
+// Puede importar Client Components (como PedidoProvider y NavBar)
+import type { Metadata } from 'next';
 import './globals.css';
 import NavBar from './components/NavBar';
+import PedidoProvider from '../src/context/PedidoProvider';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Sistema de Restaurante',
-  description: 'Gestión de mesas y pedidos',
+  description: 'Gestión de mesas, menú y comandas',
 };
 
 export default function RootLayout({
@@ -14,8 +18,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="bg-gray-50 min-h-screen">
-        <NavBar />
-        <main className="p-6">{children}</main>
+        {/* PedidoProvider envuelve todo — sus hijos pueden leer el Context */}
+        <PedidoProvider>
+          <NavBar />
+          <main className="p-6">{children}</main>
+        </PedidoProvider>
       </body>
     </html>
   );
