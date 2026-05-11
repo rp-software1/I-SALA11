@@ -48,3 +48,24 @@ export async function cambiarEstadoPedido(
     if (!res.ok) throw new Error(`Error al cambiar estado: ${res.status}`);
     return res.json();
 }
+
+// Dia4
+// Opción A: si el backend tiene GET /mesas/:id
+export async function getMesaById(id: string): Promise<Mesa> {
+    const res = await fetch(`${BASE_URL}/mesas/${id}`, { cache: 'no-store' });
+    if (res.status === 404) {
+        throw new Error(`Mesa con ID ${id} no encontrada`);
+    }
+    if (!res.ok) throw new Error(`Error al obtener mesa: ${res.status}`);
+    return res.json();
+}
+
+// Opción B: si el backend NO tiene GET /mesas/:id
+// export async function getMesaById(id: string): Promise<Mesa> {
+//   const todas = await getMesas();
+//   const mesa = todas.find(m => m._id === id);
+//   if (!mesa) throw new Error(`Mesa con ID ${id} no encontrada`);
+//   return mesa;
+// }
+
+// Usar la opción que corresponda según el resultado de Postman
