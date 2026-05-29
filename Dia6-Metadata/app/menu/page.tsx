@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { Plato } from '../../src/types';
-import { getPlatos } from '../../src/services/api';
+import { platos as allPlatos } from '../api/data';
 import MenuClient from './MenuClient';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function MenuPage() {
-  const platos: Plato[] = await getPlatos();
+  const platos = allPlatos as Plato[];
   const platosDisponibles = platos.filter((p) => p.disponible);
   const categorias = Array.from(new Set(platosDisponibles.map((p) => p.categoria)));
   const destacados = platosDisponibles.filter((p) => p.rating && p.rating >= 4.5).length;

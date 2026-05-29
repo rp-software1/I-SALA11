@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { Mesa } from '../../../src/types';
-import { getMesaById } from '../../../src/services/api';
+import { mesas as allMesas } from '../../api/data';
 import MesaDetailClient from '../MesaDetailClient';
 
 interface PageProps {
@@ -17,13 +17,8 @@ export const metadata: Metadata = {
 
 export default async function MesaDetailPage({ params }: PageProps) {
   const { mesaId } = await params;
-  let mesa: Mesa;
-
-  try {
-    mesa = await getMesaById(mesaId);
-  } catch (error) {
-    return notFound();
-  }
+  const mesa = (allMesas as Mesa[]).find((m) => m._id === mesaId);
+  if (!mesa) return notFound();
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-8">

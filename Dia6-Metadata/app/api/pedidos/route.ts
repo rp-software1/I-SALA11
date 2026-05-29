@@ -37,5 +37,5 @@ export async function POST(request: Request) {
 
   pedidos.push(nuevoPedido);
 
-  return NextResponse.json({ mensaje: 'Pedido recibido', pedido: nuevoPedido }, { status: 201 });
+  return NextResponse.json(nuevoPedido, { status: 201 });
 }

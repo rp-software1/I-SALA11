@@ -2,8 +2,7 @@
 
 import type { EstadoPedidoContext, Pedido } from '../../src/types';
 
-const rawBase = process.env.NEXT_PUBLIC_API_URL;
-const BASE_URL = rawBase ? rawBase.replace(/\/$/, '') : '/api';
+const BASE_URL = '/api';
 
 export async function enviarComanda(
   pedido: EstadoPedidoContext

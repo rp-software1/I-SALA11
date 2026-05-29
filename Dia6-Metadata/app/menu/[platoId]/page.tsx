@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Plato } from '../../../src/types';
+import { platos as allPlatos } from '../../api/data';
 import PlatoDetailClient from '../PlatoDetailClient';
 
 interface PageProps {
@@ -10,14 +11,8 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { platoId } = await params;
-  const apiBase = (process.env.NEXT_PUBLIC_API_URL || '/api').replace(/\/$/, '');
-  const response = await fetch(`${apiBase}/platos/${platoId}`, { cache: 'no-store' });
-
-  if (!response.ok) {
-    return notFound();
-  }
-
-  const plato: Plato = await response.json();
+  const plato = (allPlatos as Plato[]).find((p) => p._id === platoId);
+  if (!plato) return notFound();
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-8 space-y-6 pb-12">

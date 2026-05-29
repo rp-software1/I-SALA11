@@ -1,7 +1,6 @@
 import type { Mesa, Plato, Pedido, EstadoPedido, EstadoMesa } from '../types';
 
-const rawBase = process.env.NEXT_PUBLIC_API_URL;
-const BASE_URL = rawBase ? rawBase.replace(/\/$/, '') : '/api';
+const BASE_URL = '/api';
 
 export async function getMesas(): Promise<Mesa[]> {
   const res = await fetch(`${BASE_URL}/mesas`, { cache: 'no-store' });

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { Mesa } from '../../src/types';
-import { getMesas } from '../../src/services/api';
+import { mesas as allMesas } from '../api/data';
 import MesaCard from './MesaCard';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function MesasPage() {
-  const mesas: Mesa[] = await getMesas();
+  const mesas = allMesas as Mesa[];
 
   const disponibles = mesas.filter(m => m.estado === 'disponible').length;
   const ocupadas    = mesas.filter(m => m.estado === 'ocupada').length;
