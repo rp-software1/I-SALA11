@@ -1,3 +1,4 @@
+// Dia3 - 
 // Server Component — SIN "use client"
 // Puede importar Client Components (como PedidoProvider y NavBar)
 import type { Metadata } from 'next';
