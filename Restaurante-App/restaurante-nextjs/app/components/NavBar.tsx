@@ -28,6 +28,7 @@ export default function NavBar() {
                     </span>
                 )}
             </Link>
+            <Link href="/comandas" className={esActiva("/comandas")}>Comandas</Link>
         </nav>
     );
 }
