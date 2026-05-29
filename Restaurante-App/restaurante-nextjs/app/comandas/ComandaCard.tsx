@@ -2,7 +2,7 @@
 
 import { useTransition } from 'react';
 import type { Pedido, EstadoPedido } from '../../src/types';
-// Bloque D: import { avanzarEstadoPedido } from './actions';
+import { avanzarEstadoPedido } from './actions';
 
 const SIGUIENTE: Partial<Record<EstadoPedido, EstadoPedido>> = {
   pendiente: 'en_preparacion',
@@ -31,8 +31,8 @@ export default function ComandaCard({ pedido }: { pedido: Pedido }) {
   const handleAvanzar = (): void => {
     if (!siguiente) return;
     startTransition(async () => {
-      // Bloque D: const r = await avanzarEstadoPedido(pedido._id, siguiente);
-      // Bloque D: if (!r.ok) alert(`Error: ${r.error}`);
+      const r = await avanzarEstadoPedido(pedido._id, siguiente);
+      if (!r.ok) alert(`Error: ${r.error}`);
     });
   };
 
