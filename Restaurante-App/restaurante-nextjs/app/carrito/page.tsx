@@ -1,7 +1,7 @@
 // Dia3
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePedido } from '../../src/context/PedidoProvider';
 import { enviarComanda } from './actions';
@@ -24,6 +24,13 @@ export default function CarritoPage() {
 
     const [errorEnvio, setErrorEnvio] =
         useState<string | null>(null);
+
+    // Actualizar title de la pestaña dinámicamente
+    useEffect(() => {
+        document.title = pedido.items.length > 0
+            ? `Carrito (${pedido.items.length}) — Sistema de Restaurante`
+            : 'Carrito — Sistema de Restaurante';
+    }, [pedido.items.length]);
 
     // Calcular total visual
     const totalVisual = pedido.items.reduce(

@@ -5,7 +5,8 @@ import { getMesas } from '../../src/services/api';
 import MesaCard from './MesaCard';
 
 export const metadata: Metadata = {
-    title: 'Mesas — Restaurante',
+    title: 'Mesas',
+    description: 'Gestiona las mesas del restaurante — ve su estado y asigna comandas.',
 };
 
 // La función es async — puede hacer await directamente
