@@ -69,3 +69,10 @@ export async function getMesaById(id: string): Promise<Mesa> {
 // }
 
 // Usar la opción que corresponda según el resultado de Postman
+
+// Dia5
+export async function getPedidos(): Promise<Pedido[]> {
+  const res = await fetch(`${BASE_URL}/pedidos`, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`Error al obtener pedidos: ${res.status}`);
+  return res.json();
+}
