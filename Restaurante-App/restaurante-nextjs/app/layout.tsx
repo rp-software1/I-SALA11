@@ -2,31 +2,16 @@
 // Server Component — SIN "use client"
 // Puede importar Client Components (como PedidoProvider y NavBar)
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import NavBar from './components/NavBar';
 import PedidoProvider from '../src/context/PedidoProvider';
 
+const inter = Inter({ subsets: ['latin'] });
+
 export const metadata: Metadata = {
-  title: {
-    default: 'Sistema de Restaurante',
-    template: '%s — Sistema de Restaurante',
-  },
-  description: 'Panel de gestión de mesas, menú y comandas del restaurante.',
-  robots: {
-    index: false,
-    follow: false,
-  },
-  openGraph: {
-    title: 'Sistema de Restaurante',
-    description: 'Panel de gestión de mesas, menú y comandas del restaurante.',
-    type: 'website',
-    locale: 'es_PE',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Sistema de Restaurante',
-    description: 'Panel de gestión de mesas, menú y comandas del restaurante.',
-  },
+  title: 'Sistema de Restaurante',
+  description: 'Gestión de mesas, menú y comandas',
 };
 
 export default function RootLayout({
@@ -36,11 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="bg-gray-50 min-h-screen">
-        {/* PedidoProvider envuelve todo — sus hijos pueden leer el Context */}
+      <body className={`${inter.className} bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen antialiased`}>
         <PedidoProvider>
           <NavBar />
-          <main className="p-6">{children}</main>
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
         </PedidoProvider>
       </body>
     </html>

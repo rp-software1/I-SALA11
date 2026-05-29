@@ -81,12 +81,34 @@ export default function PedidoProvider({
         setPedido(prev => ({ ...prev, mesaId, tipo: 'mesa' }));
     }
 
+    function cambiarCantidad(platoId: string, cantidad: number): void {
+        setPedido(prev => {
+            const item = prev.items.find(i => i.platoId === platoId);
+            if (!item) return prev;
+            if (cantidad <= 0) {
+                return {
+                    ...prev,
+                    items: prev.items.filter(i => i.platoId !== platoId),
+                    total: prev.total - item.precioUnitario * item.cantidad,
+                };
+            }
+            const diff = cantidad - item.cantidad;
+            return {
+                ...prev,
+                items: prev.items.map(i =>
+                    i.platoId === platoId ? { ...i, cantidad } : i
+                ),
+                total: prev.total + diff * item.precioUnitario,
+            };
+        });
+    }
+
     function limpiarPedido(): void {
         setPedido(initialState);
     }
 
     return (
-        <PedidoContext.Provider value={{ pedido, agregarPlato, quitarPlato, cambiarTipo, asignarMesa, limpiarPedido }}>
+        <PedidoContext.Provider value={{ pedido, agregarPlato, quitarPlato, cambiarCantidad, cambiarTipo, asignarMesa, limpiarPedido }}>
             {children}
         </PedidoContext.Provider>
     );
