@@ -1,4 +1,5 @@
 # Día 6 - Metadata, Open Graph y Preparación para Producción
+## ⭐ **APARTADO PRINCIPAL PARA DESPLIEGUE**
 
 ## 📋 Lo que se Pedía
 
