@@ -2,14 +2,29 @@ import FeatureCards from './components/FeatureCards';
 
 const features = [
   {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 10c0 3.866 1.79 7.328 4.576 9.576M16.424 19.576C19.21 17.328 21 13.866 21 10M3.5 10c0 3.59 1.41 7.03 3.954 9.472M3 10a9 9 0 0 1 18 0"/>
+      </svg>
+    ),
     title: 'Pedidos rápidos',
     desc: 'Ordena desde el menú digital, asigna tu mesa y envía la comanda en segundos sin esperar al mozo.',
   },
   {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+    ),
     title: 'En tiempo real',
     desc: 'Consulta el estado de cada mesa y las comandas activas al instante para una gestión eficiente.',
   },
   {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"/><path d="M12 6v6l4 2"/>
+      </svg>
+    ),
     title: 'Sabores auténticos',
     desc: 'Recetas peruanas tradicionales elaboradas con ingredientes frescos del mercado cada mañana.',
   },
