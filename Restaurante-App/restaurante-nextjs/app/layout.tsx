@@ -12,6 +12,14 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Sistema de Restaurante',
   description: 'Gestión de mesas, menú y comandas',
+  openGraph: {
+    title: 'Sistema de Restaurante',
+    description: 'Gestión de mesas, menú y comandas',
+    url: 'https://i-sala-11.vercel.app',
+    siteName: 'Restaurante',
+    locale: 'es_PE',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
