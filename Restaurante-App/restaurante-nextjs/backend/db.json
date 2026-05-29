@@ -1,0 +1,35 @@
+{
+  "mesas": [
+    { "_id": "mesa-1", "numero": 1, "capacidad": 2, "estado": "disponible", "pedidoActivoId": null },
+    { "_id": "mesa-2", "numero": 2, "capacidad": 4, "estado": "ocupada", "pedidoActivoId": "pedido-1" },
+    { "_id": "mesa-3", "numero": 3, "capacidad": 6, "estado": "disponible", "pedidoActivoId": null },
+    { "_id": "mesa-4", "numero": 4, "capacidad": 4, "estado": "reservada", "pedidoActivoId": null },
+    { "_id": "mesa-5", "numero": 5, "capacidad": 8, "estado": "disponible", "pedidoActivoId": null },
+    { "_id": "mesa-6", "numero": 6, "capacidad": 2, "estado": "fuera_servicio", "pedidoActivoId": null }
+  ],
+  "platos": [
+    { "_id": "plato-1", "nombre": "Ceviche Clásico", "descripcion": "Pescado fresco marinado en limón con cebolla y ají", "precio": 28.00, "categoria": "entradas", "disponible": true },
+    { "_id": "plato-2", "nombre": "Lomo Saltado", "descripcion": "Tiras de lomo salteadas con cebolla, tomate y papas fritas", "precio": 35.00, "categoria": "principales", "disponible": true },
+    { "_id": "plato-3", "nombre": "Ají de Gallina", "descripcion": "Pollo desmenuzado en crema de ají amarillo con nueces", "precio": 32.00, "categoria": "principales", "disponible": true },
+    { "_id": "plato-4", "nombre": "Causa Rellena", "descripcion": "Papa amarilla con relleno de pollo y palta", "precio": 25.00, "categoria": "entradas", "disponible": true },
+    { "_id": "plato-5", "nombre": "Arroz con Mariscos", "descripcion": "Arroz salteado con mariscos frescos y salsa criolla", "precio": 38.00, "categoria": "principales", "disponible": true },
+    { "_id": "plato-6", "nombre": "Suspiro Limeño", "descripcion": "Postre cremoso de leche condensada con merengue", "precio": 18.00, "categoria": "postres", "disponible": true },
+    { "_id": "plato-7", "nombre": "Chicha Morada", "descripcion": "Refresco tradicional de maíz morado con piña", "precio": 8.00, "categoria": "bebidas", "disponible": true },
+    { "_id": "plato-8", "nombre": "Inca Kola", "descripcion": "Gaseosa peruana sabor a frutas", "precio": 7.00, "categoria": "bebidas", "disponible": true }
+  ],
+  "pedidos": [
+    {
+      "_id": "pedido-1",
+      "mesaId": "mesa-2",
+      "tipo": "mesa",
+      "estado": "pendiente",
+      "items": [
+        { "platoId": "plato-1", "nombre": "Ceviche Clásico", "cantidad": 2, "precioUnitario": 28.00 },
+        { "platoId": "plato-2", "nombre": "Lomo Saltado", "cantidad": 1, "precioUnitario": 35.00 }
+      ],
+      "total": 91.00,
+      "creadoEn": "2026-05-29T12:00:00.000Z",
+      "actualizadoEn": "2026-05-29T12:00:00.000Z"
+    }
+  ]
+}
