@@ -15,7 +15,7 @@ export async function avanzarEstadoPedido(
   }
 
   try {
-    const res = await fetch(`${BASE_URL}/pedidos/${pedidoId}/estado`, {
+    const res = await fetch(`${BASE_URL}/pedidos/${pedidoId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ estado: nuevoEstado }),

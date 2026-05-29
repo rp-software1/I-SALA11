@@ -39,7 +39,7 @@ export async function cambiarEstadoPedido(
     pedidoId: string,
     estado: EstadoPedido
 ): Promise<Pedido> {
-    const res = await fetch(`${BASE_URL}/pedidos/${pedidoId}/estado`, {
+    const res = await fetch(`${BASE_URL}/pedidos/${pedidoId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ estado }),
